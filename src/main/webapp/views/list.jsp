@@ -17,7 +17,7 @@
 </head>
 <body>
 <h1 class="alert alert-primary">Danh sách sinh viên</h1>
-<a href="/student?action=add" class="btn btn-info">Thêm mới</a>
+<a href="/student/add" class="btn btn-info">Thêm mới</a>
 <table class="table table-danger">
     <thead>
     <tr class="text-center">
@@ -39,8 +39,8 @@
                 <td>${student.phone}</td>
                 <td>${student.address}</td>
                 <td>${student.sex?"Nam":"Nữ"}</td>
-                <td><a href="/student?action=edit&id=${student.id}" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a></td>
-                <td><a href="/student?action=delete&id=${student.id}" class="btn btn-danger"><i class="bi bi-trash"></i></a></td>
+                <td><a href="/student/edit?id=${student.id}" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a></td>
+                <td><a href="/student/delete?id=${student.id}" class="btn btn-danger"><i class="bi bi-trash"></i></a></td>
             </tr>
         </c:forEach>
     </tbody>

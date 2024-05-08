@@ -1,13 +1,16 @@
 package ra.mvc.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ra.mvc.dao.IStudentDao;
 import ra.mvc.dao.StudentDaoImpl;
 import ra.mvc.model.Student;
 
 import java.util.List;
-
+@Service // ầng logic nghệp vụ
 public class StudentServiceImpl implements IStudentService{
-    private static final IStudentDao studentDao = new StudentDaoImpl();
+    @Autowired
+    private IStudentDao studentDao ; // tiêm bean vào
     @Override
     public List<Student> findAll() {
         return studentDao.findAll();

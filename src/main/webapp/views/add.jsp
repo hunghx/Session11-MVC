@@ -14,7 +14,7 @@
 </head>
 <body>
 <h1 class="text-center">Thêm mơi</h1>
-<form class="row g-3" action="/student" method="post">
+<form class="row g-3" action="/student/add" method="post">
     <div class="col-md-6">
         <label for="inputEmail4" class="form-label">Name</label>
         <input type="text" class="form-control" name="name" id="inputEmail4">

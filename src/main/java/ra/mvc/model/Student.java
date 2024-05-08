@@ -1,6 +1,7 @@
 package ra.mvc.model;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,6 +16,7 @@ public class Student {
     private String name;
     private Boolean sex;
     private String phone;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dob ;
     private String address;
 

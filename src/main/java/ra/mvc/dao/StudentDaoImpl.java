@@ -1,16 +1,20 @@
 package ra.mvc.dao;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import ra.mvc.model.Student;
 import ra.mvc.util.ConnectDB;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@Repository // tầng tương tác CSDL
 public class StudentDaoImpl implements IStudentDao{
+    @Autowired
+    private  ConnectDB connectDB; // tiêm bean vào
     @Override
     public List<Student> findAll() {
-        Connection conn = ConnectDB.getConnection();
+        Connection conn = connectDB.getConnection();
         List<Student> list = new ArrayList<>();
         try {
             CallableStatement call = conn.prepareCall("select * from student");
@@ -30,13 +34,13 @@ public class StudentDaoImpl implements IStudentDao{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }finally {
-            ConnectDB.closeConnection(conn);
+            connectDB.closeConnection(conn);
         }
     }
 
     @Override
     public Student findById(Integer id) {
-        Connection conn = ConnectDB.getConnection();
+        Connection conn = connectDB.getConnection();
         Student student = null;
         try {
             CallableStatement call = conn.prepareCall("select * from student where id = ?");
@@ -56,13 +60,13 @@ public class StudentDaoImpl implements IStudentDao{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }finally {
-            ConnectDB.closeConnection(conn);
+            connectDB.closeConnection(conn);
         }
     }
 
     @Override
     public void save(Student student) {
-        Connection conn = ConnectDB.getConnection();
+        Connection conn = connectDB.getConnection();
         CallableStatement call = null;
         try {
            if (student.getId()==null){
@@ -82,13 +86,13 @@ public class StudentDaoImpl implements IStudentDao{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }finally {
-            ConnectDB.closeConnection(conn);
+            connectDB.closeConnection(conn);
         }
     }
 
     @Override
     public void deleteById(Integer id) {
-        Connection conn = ConnectDB.getConnection();
+        Connection conn = connectDB.getConnection();
         try {
             CallableStatement call = conn.prepareCall("delete  from student where  id = ?");
             call.setInt(1,id);
@@ -96,7 +100,7 @@ public class StudentDaoImpl implements IStudentDao{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }finally {
-            ConnectDB.closeConnection(conn);
+            connectDB.closeConnection(conn);
         }
     }
 }
